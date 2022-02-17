@@ -49,11 +49,11 @@ public class MainController {
         List<Message> messages = messageService.findMessagesByRecipient(request.getRemoteUser());
         Collections.sort(messages, Comparator.comparing(Message::getSendDate).reversed());
         model.addAttribute("messages", messages);
-        return "/messages";
+        return "messages";
     }
 
     @MessageMapping("/messages")
-    public void sendMessage(final Message message, Principal principal) throws InterruptedException {
+    public void sendMessage(final Message message, Principal principal)  {
         message.setSendDate(new Timestamp(System.currentTimeMillis()));
         message.setSender(principal.getName());
         messageService.saveMessage(message);
