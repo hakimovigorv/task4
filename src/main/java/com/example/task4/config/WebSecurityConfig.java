@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/", "/registration").not().fullyAuthenticated()
-                .antMatchers("/hello", "/messages").hasRole("USER")
+                .antMatchers("/messages").hasRole("USER")
                 .antMatchers("/", "/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
